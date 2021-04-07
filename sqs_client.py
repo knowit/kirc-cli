@@ -24,8 +24,6 @@ def main():
             "message": user_input, 
             "id": id, 
             "timestamp": timestamp, 
-            "style": None, 
-            "nickname": None
             }
         send_queue_message(json.dumps(msg))
         print("Melding sendt!")
