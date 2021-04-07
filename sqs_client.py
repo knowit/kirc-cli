@@ -1,6 +1,6 @@
 import boto3
 from consts import REGION, QUEUE_NAME, MESSAGE_GROUP_ID
-import datetime
+from datetime import datetime, timezone
 import uuid
 import json
 
@@ -14,13 +14,21 @@ def send_queue_message(message: str):
 def main():
     print("Velkommen til verdens enkleste SQS-klient.")
     print("Klienten kan avsluttes når som helst ved å holde inne CTRL + C.")
-    print("Skriv inn meldingen du ønsker å sende til køen. For at meldingen faktisk skal bli sendt må du trykke på enter-tasten.")
     while True:
+        print()
+        print("Skriv inn meldingen du ønsker å sende til køen. For at meldingen faktisk skal bli sendt må du trykke på enter-tasten.")
         user_input = input()
         id = str(uuid.uuid4())
-        timestamp = datetime.datetime.now().isoformat()
-        msg = {"message": user_input, "id": id, "timestamp": timestamp}
+        timestamp = datetime.now(timezone.utc).astimezone().isoformat()
+        msg = {
+            "message": user_input, 
+            "id": id, 
+            "timestamp": timestamp, 
+            "style": None, 
+            "nickname": None
+            }
         send_queue_message(json.dumps(msg))
+        print("Melding sendt!")
         
 if __name__ == '__main__':
     main()
