@@ -14,17 +14,28 @@ def send_queue_message(message: str):
 def main():
     print("Velkommen til verdens enkleste SQS-klient.")
     print("Klienten kan avsluttes når som helst ved å holde inne CTRL + C.")
+    style = ""
+    nick = None
     while True:
         print()
+        if (nick is None):
+            nick = input("Skriv inn brukernavn: ")
         print("Skriv inn meldingen du ønsker å sende til køen. For at meldingen faktisk skal bli sendt må du trykke på enter-tasten.")
         user_input = input()
         id = str(uuid.uuid4())
         timestamp = datetime.now(timezone.utc).astimezone().isoformat()
+        if (user_input.startswith("$")):
+            style = user_input[1:]
+            print("Stylingen er oppdatert!")
+            continue
         msg = {
             "message": user_input, 
             "id": id, 
             "timestamp": timestamp, 
+            "nickname": nick
             }
+        if (style != ""):
+            msg["style"] = style
         send_queue_message(json.dumps(msg))
         print("Melding sendt!")
         
