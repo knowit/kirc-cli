@@ -1,4 +1,4 @@
-iimport boto3
+import boto3
 from consts import REGION, QUEUE_NAME, MESSAGE_GROUP_ID
 from datetime import datetime, timezone
 import uuid
