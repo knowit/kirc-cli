@@ -18,8 +18,7 @@ def main():
     while True:
         print()
         if (nick is None):
-            print("Skriv inn brukernavn")
-            nick = input()
+            nick = input("Skriv inn brukernavn: ")
         print("Skriv inn meldingen du ønsker å sende til køen. For at meldingen faktisk skal bli sendt må du trykke på enter-tasten.")
         user_input = input()
         id = str(uuid.uuid4())
