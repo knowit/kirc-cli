@@ -11,9 +11,31 @@ def send_queue_message(message: str):
     return response
 
 
+#"key1: value1; key2: value2;" osv., f.eks. "font-size: 48px; background-color: pink;"
+
 def main():
     print("Velkommen til verdens enkleste SQS-klient.")
     print("Klienten kan avsluttes når som helst ved å holde inne CTRL + C.")
+
+    shrek = 'https://media.tenor.com/images/5187ae066f8332352ca554484f0bc41f/tenor.gif'
+
+    while True:
+        color = input("Hvilken farge skal teksten ha? ")
+
+        if color.isalpha():
+            break
+        else: 
+            pass
+
+    while True:
+        size = input("Hvilken størrelse skal teksten ha i pixler? ")
+
+        if not size.isalpha():
+            break
+        else: 
+            pass
+
+    nickname = input("Skriv inn dit kallenavn:")
     while True:
         print()
         print("Skriv inn meldingen du ønsker å sende til køen. For at meldingen faktisk skal bli sendt må du trykke på enter-tasten.")
@@ -23,10 +45,14 @@ def main():
         msg = {
             "message": user_input, 
             "id": id, 
+            "nickname": nickname,
             "timestamp": timestamp, 
+            "style": f"min-height: 100px; color: {color}; font-size: {size}px; background-image: url({shrek}); background-size: 100px 100px;"
             }
         send_queue_message(json.dumps(msg))
         print("Melding sendt!")
         
 if __name__ == '__main__':
     main()
+
+#"style": f"font-size: {size}px; background-color: {color}; "
