@@ -15,8 +15,11 @@ def main():
     print("Velkommen til verdens enkleste SQS-klient.")
     print("Klienten kan avsluttes når som helst ved å holde inne CTRL + C.")
     style = ""
+    nick = None
     while True:
         print()
+        if (nick is None):
+            nick = input("Skriv inn brukernavn: ")
         print("Skriv inn meldingen du ønsker å sende til køen. For at meldingen faktisk skal bli sendt må du trykke på enter-tasten.")
         user_input = input()
         id = str(uuid.uuid4())
@@ -29,6 +32,7 @@ def main():
             "message": user_input, 
             "id": id, 
             "timestamp": timestamp, 
+            "nickname": nick
             }
         if (style != ""):
             msg["style"] = style
