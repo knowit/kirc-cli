@@ -19,8 +19,21 @@ def main():
 
     shrek = 'https://media.tenor.com/images/5187ae066f8332352ca554484f0bc41f/tenor.gif'
 
-    color = input("Hvilken bakgrunnsfarge skal teksten ha? ")
-    size = input("Hvilken størrelse skal teksten ha i pixler? ")
+    while True:
+        color = input("Hvilken farge skal teksten ha? ")
+
+        if color.isalpha():
+            break
+        else: 
+            pass
+
+    while True:
+        size = input("Hvilken størrelse skal teksten ha i pixler? ")
+
+        if not size.isalpha():
+            break
+        else: 
+            pass
 
     nickname = input("Skriv inn dit kallenavn:")
     while True:
@@ -34,7 +47,7 @@ def main():
             "id": id, 
             "nickname": nickname,
             "timestamp": timestamp, 
-            "style": f"min-height: 100px; font-size: {size}px; background-image: url({shrek}); background-size: 100px 100px;"
+            "style": f"min-height: 100px; color: {color}; font-size: {size}px; background-image: url({shrek}); background-size: 100px 100px;"
             }
         send_queue_message(json.dumps(msg))
         print("Melding sendt!")
